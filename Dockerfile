@@ -19,7 +19,11 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Tự động tạo APP_KEY và cấu hình cache ngay trong container
 RUN cp .env.example .env \
+    && touch database/database.sqlite \
+    && sed -i 's/DB_CONNECTION=mysql/DB_CONNECTION=sqlite/g' .env \
+    && sed -i 's/DB_DATABASE=.*/DB_DATABASE=\/var\/www\/html\/database\/database.sqlite/g' .env \
     && php artisan key:generate --force \
+    && php artisan migrate --force \
     && php artisan config:clear \
     && php artisan view:clear
 
