@@ -12,7 +12,7 @@
             theme: {
                 extend: {
                     colors: {
-                        darkBg: '#c9b462ff',
+                        darkBg: '#0f172a',
                         cardBg: '#1e293b',
                     }
                 }
