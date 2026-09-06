@@ -24,6 +24,7 @@ RUN cp .env.example .env \
     && sed -i 's/DB_DATABASE=.*/DB_DATABASE=\/var\/www\/html\/database\/database.sqlite/g' .env \
     && php artisan key:generate --force \
     && php artisan migrate --force \
+    && php artisan db:seed --force \
     && php artisan config:clear \
     && php artisan view:clear
 
