@@ -18,7 +18,8 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 
 # Tự động tạo APP_KEY và cấu hình cache ngay trong container
-RUN php artisan key:generate --force \
+RUN cp .env.example .env \
+    && php artisan key:generate --force \
     && php artisan config:clear \
     && php artisan view:clear
 
